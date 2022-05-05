@@ -23,7 +23,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
             <TextBox x:Name="messageInput" MinWidth="300" Margin="20" />
             <Button x:Name="sendMessage" IsEnabled="False"
-                Padding="20 10" Margin="20" Click="sendMessage_Click">
+                    Padding="20 10" Margin="20" Click="sendMessage_Click">
                 Send Message
             </Button>
         </StackPanel>
@@ -41,6 +41,6 @@
                 Increment Counter
             </Button>
         </StackPanel>
-        
+
     </Grid>
 </Window>

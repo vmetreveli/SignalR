@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
-using System;
-using System.Threading.Tasks;
-using System.Windows;
+﻿namespace WPFClient;
 
-namespace WPFClient;
-
-public partial class MainWindow : Window
+public class MainWindow : Window
 {
-    HubConnection connection;
-    HubConnection counterConnection;
+    private HubConnection connection;
+    private HubConnection counterConnection;
 
     public MainWindow()
     {
@@ -24,7 +19,7 @@ public partial class MainWindow : Window
             .WithAutomaticReconnect()
             .Build();
 
-        connection.Reconnecting += (sender) =>
+        connection.Reconnecting += sender =>
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -35,7 +30,7 @@ public partial class MainWindow : Window
             return Task.CompletedTask;
         };
 
-        connection.Reconnected += (sender) =>
+        connection.Reconnected += sender =>
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -47,7 +42,7 @@ public partial class MainWindow : Window
             return Task.CompletedTask;
         };
 
-        connection.Closed += (sender) =>
+        connection.Closed += sender =>
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -61,7 +56,7 @@ public partial class MainWindow : Window
         };
     }
 
-    private async void openConnection_Click(object sender, RoutedEventArgs e)
+    async private void openConnection_Click(object sender, RoutedEventArgs e)
     {
         connection.On<string, string>("ReceiveMessage", (user, message) =>
         {
@@ -85,7 +80,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private async void sendMessage_Click(object sender, RoutedEventArgs e)
+    async private void sendMessage_Click(object sender, RoutedEventArgs e)
     {
         try
         {
@@ -98,7 +93,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private async void openCounter_Click(object sender, RoutedEventArgs e)
+    async private void openCounter_Click(object sender, RoutedEventArgs e)
     {
         try
         {
@@ -111,7 +106,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private async void incrementCounter_Click(object sender, RoutedEventArgs e)
+    async private void incrementCounter_Click(object sender, RoutedEventArgs e)
     {
         try
         {
